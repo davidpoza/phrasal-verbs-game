@@ -1,0 +1,9 @@
+.root {
+  height: 100vh;
+  width: 800px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+  grid-template-rows: repeat( auto-fit, 100px);
+  gap: 10px 10px;
+}
