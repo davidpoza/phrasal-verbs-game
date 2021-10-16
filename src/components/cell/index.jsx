@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as styles from './styles.module.css';
 
-export default function Cell({ word, hidden }) {
-  return <div className={styles.root}>
-    {word}
+export default function Cell({ index, word, hidden, handleOnClick }) {
+  return <div className={!word ? styles.solved : styles.root} onClick={() => {handleOnClick(index); }}>
+    {!hidden && word}
   </div>
 }
 

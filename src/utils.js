@@ -13,3 +13,25 @@ export function shuffle(array) {
   }
   return array;
 }
+
+export function createBoard(words) {
+  const wordList = [];
+  Object.keys(words).forEach((w) => {
+    wordList.push(w);
+  });
+  shuffle(wordList);
+  return wordList.map((w) => {
+    return {
+      word: w,
+      hidden: true,
+    };
+  });
+}
+
+export function getExposedCards(board) {
+  return board?.filter((c) => !c.hidden);
+}
+
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
