@@ -12,3 +12,9 @@ export const PHRASAL_VERBS = {
   'go through sth': 'to finish something',
   'keep on doing sth': 'to continue to do something'
 };
+
+export const CARD_STATE = {
+  FACE_UP: 'FACE_UP',
+  FACE_DOWN: 'FACE_DOWN',
+  SOLVED: 'SOLVED',
+}

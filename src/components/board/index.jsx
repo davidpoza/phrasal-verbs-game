@@ -1,57 +1,29 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
-
-import { createBoardAction, showCardAction, hideAllAction, removeCardAction } from 'actions';
+import React from 'react';
 import Cell from 'components/cell';
-import { initialState, reducer }  from 'reducer';
-import { sleep, getExposedCards } from 'utils';
-import * as styles from './styles.module.css';
 
-const cardFlipAudio = new Audio(`${process.env.PUBLIC_URL}/audios/card-flip.wav`);
-const successAudio = new Audio(`${process.env.PUBLIC_URL}/audios/success.wav`);
+import { CARD_STATE } from 'consts';
+import * as styles from './styles.module.css';
+import { useBoard } from './hook';
 
 export default function Board() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, handleOnClick } = useBoard();
 
-  const handleOnClick = useCallback((index) => {
-    if (state?.board[index]?.word) {
-      if (state?.numExposedCards < 2) {
-        cardFlipAudio.currentTime = 0;
-        cardFlipAudio.play();
-      }
-      showCardAction(dispatch, state, index);
-    }
-  }, [state]);
-
-  useEffect(() => {
-    createBoardAction(dispatch);
-  }, []);
-
-  useEffect(() => {
-    if (state?.numExposedCards === 2) {
-      const exposedCards = getExposedCards(state.board);
-      const indexCardA = state?.board.indexOf(exposedCards[0]);
-      const indexCardB = state?.board.indexOf(exposedCards[1]);
-      if (state?.board[indexCardA]?.word === state.words[state?.board[indexCardB]?.word]) {
-        sleep(1000)
-          .then(() => {
-            successAudio.currentTime = 1;
-            successAudio.play();
-            removeCardAction(dispatch, indexCardA);
-            removeCardAction(dispatch, indexCardB);
-          })
-      } else {
-        sleep(1000)
-          .then(() => {
-            hideAllAction(dispatch);
-          });
-      }
-    }
-  }, [state]);
-console.log(state.board)
   return (
     <div className={styles.root}>
       {
-        state?.board?.map((item, i) => <Cell index={i} word={item.word} hidden={item.hidden} handleOnClick={handleOnClick} />)
+        state?.board?.map((item, i) => {
+          let state = CARD_STATE.FACE_DOWN;
+          if (!item.hidden) state = CARD_STATE.FACE_UP;
+          else if (!item.word) state = CARD_STATE.SOLVED;
+
+          return <Cell
+            key={`card${i}`}
+            index={i}
+            word={item.word}
+            state={state}
+            handleOnClick={handleOnClick}
+          />
+        })
       }
     </div>
   );
