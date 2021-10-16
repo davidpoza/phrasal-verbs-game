@@ -1,0 +1,11 @@
+.root {
+  font-size: 26px;
+  padding: 10px;
+}
+
+@media (min-width: 500px) {
+  .root {
+    font-size: 34px;
+    padding: 20px;
+  }
+}
