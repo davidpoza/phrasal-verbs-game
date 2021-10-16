@@ -35,3 +35,9 @@ export function getExposedCards(board) {
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export function formatSeconds(seconds) {
+  const date = new Date(null);
+  date.setSeconds(seconds);
+  return date.toISOString().substr(11, 8);
+}

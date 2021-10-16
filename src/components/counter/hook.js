@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { formatSeconds } from 'utils';
 
 export default function useCounter() {
   const [counter, setCounter] = useState(0); // seconds
@@ -11,6 +12,6 @@ export default function useCounter() {
   }, [counter])
 
   return {
-    counter,
+    counter: formatSeconds(counter),
   }
 }
