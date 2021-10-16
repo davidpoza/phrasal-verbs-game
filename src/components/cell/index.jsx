@@ -16,7 +16,7 @@ export default function Cell({ index, word, state = CARD_STATE.FACE_DOWN, handle
     className = styles.solved;
   }
   return <div className={className} onClick={() => {handleOnClick(index); }}>
-    {state === CARD_STATE.FACE_UP && word}
+    <div className={styles.text}>{state === CARD_STATE.FACE_UP && word}</div>
   </div>
 }
 

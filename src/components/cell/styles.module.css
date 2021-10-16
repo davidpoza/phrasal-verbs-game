@@ -1,10 +1,23 @@
+.text {
+  font-size: 12px;
+  padding: 8px;
+}
+
+@media (min-width: 500px) {
+  .text {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+
 .facedown, .solved, .faceup {
   border: 1px solid grey;
   border-radius: 4px;
   align-self: center;
   justify-self: center;
-  height: 100px;
-  width: 100px;
+  width: 60px;
+  height: 84px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +28,27 @@
   --box-shadow-color: rgba(34, 114, 175, 0.48);
   box-shadow: 0 14px 26px rgba(0,0,0,0.04);
   transition: all 0.3s ease-out;
+}
+
+@media (min-width: 500px) {
+  .facedown, .solved, .faceup {
+    border: 1px solid grey;
+    border-radius: 4px;
+    align-self: center;
+    justify-self: center;
+    width: 100px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    --bg-color: #2af1f1;
+    --bg-color-light: #d6f9fc;
+    --text-color-hover: #4C5656;
+    --box-shadow-color: rgba(34, 114, 175, 0.48);
+    box-shadow: 0 14px 26px rgba(0,0,0,0.04);
+    transition: all 0.3s ease-out;
+  }
 }
 
 .facedown:hover, .faceup {
