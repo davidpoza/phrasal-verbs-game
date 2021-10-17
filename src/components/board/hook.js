@@ -1,6 +1,13 @@
 import { useEffect, useCallback, useReducer }from 'react';
 import { initialState, reducer }  from 'reducer';
-import { createBoardAction, showCardAction, hideAllAction, removeCardAction, changeBoardAction } from 'actions';
+import {
+  createBoardAction,
+  showCardAction,
+  hideAllAction,
+  removeCardAction,
+  changeBoardAction,
+  setCounterAction,
+} from 'actions';
 import { sleep, getExposedCards } from 'utils';
 
 
@@ -25,7 +32,15 @@ export function useBoard() {
 
   const handleChangeBoard = useCallback((event) => {
     changeBoardAction(dispatch, event.target.value);
+    setCounterAction(dispatch, 0);
   }, [state]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCounterAction(dispatch, state.counter + 1);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [state.counter])
 
   useEffect(() => {
     if (state?.numExposedCards === 2) {

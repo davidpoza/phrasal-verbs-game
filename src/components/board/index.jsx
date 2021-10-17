@@ -1,6 +1,7 @@
 import React from 'react';
 import Cell from 'components/cell';
 import Selector from 'components/selector/index.jsx';
+import Counter from 'components/counter/index.jsx';
 import { CARD_STATE } from 'consts';
 import * as styles from './styles.module.css';
 import { useBoard } from './hook';
@@ -28,6 +29,7 @@ export default function Board() {
           })
         }
       </div>
+      <Counter counter={state.counter} />
     </div>
   );
 }

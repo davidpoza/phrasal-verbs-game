@@ -10,7 +10,8 @@ export const initialState = {
   },
   numExposedCards: 0,
   board: [],
-  selectedBoard: initialBoard
+  selectedBoard: initialBoard,
+  counter: 0,
 };
 
 export function reducer(state, action) {
@@ -37,6 +38,8 @@ export function reducer(state, action) {
         ...transposeObject(PHRASAL_VERBS[action.board])
       };
       return ({ ...state, board: createBoard(newWords), words: newWords, selectedBoard: action.board });
+    case TYPES.SET_COUNTER:
+      return ({ ...state, counter: action.value });
     default:
       return state;
   }

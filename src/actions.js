@@ -22,3 +22,7 @@ export function showCardAction(dispatch, state, index) {
 export function changeBoardAction(dispatch, board) {
   dispatch({ type: TYPES.CHANGE_BOARD, board });
 }
+
+export function setCounterAction(dispatch, value) {
+  dispatch({ type: TYPES.SET_COUNTER, value });
+}
