@@ -20,6 +20,25 @@ export const PHRASAL_VERBS = {
   }
 };
 
+export const EXAMPLE_SENTENCES = {
+  'put on': 'frase de ejemplo....',
+  'go back': 'frase de ejemplo....',
+  'go into': 'frase de ejemplo....',
+  'get over sth/sb': 'frase de ejemplo....',
+  'go off': 'frase de ejemplo....',
+  'go up': 'frase de ejemplo....',
+  'come out': 'frase de ejemplo....',
+  'go ahead': 'frase de ejemplo....',
+  'go on': 'frase de ejemplo....',
+  'go out': 'frase de ejemplo....',
+  'go through sth': 'frase de ejemplo....',
+  'keep on doing sth': 'frase de ejemplo....',
+  'break down': 'frase de ejemplo....',
+  'call sb up': 'frase de ejemplo....',
+  'calm down': 'frase de ejemplo....'
+
+}
+
 export const CARD_STATE = {
   FACE_UP: 'FACE_UP',
   FACE_DOWN: 'FACE_DOWN',

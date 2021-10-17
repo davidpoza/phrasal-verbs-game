@@ -1,0 +1,13 @@
+.root {
+  font-size: 1em;
+  font-style: italic;
+  margin: 1em 0 2em 0;
+}
+
+@media (min-width: 500px) {
+  .root {
+    font-size: 1.3em;
+    font-style: italic;
+    margin: 1em 0 2em 0;
+  }
+}

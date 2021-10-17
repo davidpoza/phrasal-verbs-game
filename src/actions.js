@@ -26,3 +26,7 @@ export function changeBoardAction(dispatch, board) {
 export function setCounterAction(dispatch, value) {
   dispatch({ type: TYPES.SET_COUNTER, value });
 }
+
+export function setLastWordAction(dispatch, value) {
+  dispatch({ type: TYPES.SET_LAST_WORD, value });
+}

@@ -2,7 +2,8 @@ import React from 'react';
 import Cell from 'components/cell';
 import Selector from 'components/selector/index.jsx';
 import Counter from 'components/counter/index.jsx';
-import { CARD_STATE } from 'consts';
+import Example from 'components/example/index.jsx';
+import { CARD_STATE, EXAMPLE_SENTENCES } from 'consts';
 import * as styles from './styles.module.css';
 import { useBoard } from './hook';
 
@@ -29,6 +30,7 @@ export default function Board() {
           })
         }
       </div>
+      <Example sentence={EXAMPLE_SENTENCES[state?.lastWord]} />
       <Counter counter={state.counter} />
     </div>
   );

@@ -12,6 +12,7 @@ export const initialState = {
   board: [],
   selectedBoard: initialBoard,
   counter: 0,
+  lastWord: '',
 };
 
 export function reducer(state, action) {
@@ -40,6 +41,8 @@ export function reducer(state, action) {
       return ({ ...state, board: createBoard(newWords), words: newWords, selectedBoard: action.board });
     case TYPES.SET_COUNTER:
       return ({ ...state, counter: action.value });
+    case TYPES.SET_LAST_WORD:
+      return ({ ...state, lastWord: action.value });
     default:
       return state;
   }

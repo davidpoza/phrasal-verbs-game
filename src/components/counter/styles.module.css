@@ -1,5 +1,8 @@
 .root {
-  font-size: 26px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 20px;
   padding: 10px;
 }
 

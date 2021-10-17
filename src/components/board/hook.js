@@ -7,6 +7,7 @@ import {
   removeCardAction,
   changeBoardAction,
   setCounterAction,
+  setLastWordAction
 } from 'actions';
 import { sleep, getExposedCards } from 'utils';
 
@@ -26,6 +27,7 @@ export function useBoard() {
         cardFlipAudio.currentTime = 0;
         cardFlipAudio.play();
       }
+      setLastWordAction(dispatch, state?.board[index]?.word);
       showCardAction(dispatch, state, index);
     }
   }, [state]);
@@ -44,6 +46,7 @@ export function useBoard() {
 
   useEffect(() => {
     if (state?.numExposedCards === 2) {
+      if (state?.lastWord) setLastWordAction(dispatch, '');
       const exposedCards = getExposedCards(state.board);
       const indexCardA = state?.board.indexOf(exposedCards[0]);
       const indexCardB = state?.board.indexOf(exposedCards[1]);

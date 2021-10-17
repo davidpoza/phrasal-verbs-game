@@ -1,7 +1,7 @@
 .root {
   width: 90%;
   grid-template-columns: repeat( auto-fit, minmax(50px, 1fr) );
-  gap: 10px 15px;
+  gap: 10px 12px;
   margin: 20px auto;
   display: grid;
 }
@@ -11,7 +11,7 @@
     grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
     grid-template-rows: repeat( auto-fit, 140px);
     gap: 15px 12px;
-    min-height: 70vh;
+    min-height: 60vh;
     width: 90%;
     padding: 20px;
   }
@@ -22,7 +22,7 @@
     grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
     grid-template-rows: repeat( auto-fit, 140px);
     gap: 15px 12px;
-    min-height: 70vh;
+    min-height: 60vh;
     width: 60%;
     padding: 20px;
   }
