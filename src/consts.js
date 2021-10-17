@@ -49,3 +49,5 @@ export const BOARDS_LIST = {
   'education': 'Education',
   'travelling': 'Travelling'
 };
+
+export const APP_ID = 'phasalverbsmemorygame';

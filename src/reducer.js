@@ -13,6 +13,7 @@ export const initialState = {
   selectedBoard: initialBoard,
   counter: 0,
   lastWord: '',
+  username: 'anonymous'
 };
 
 export function reducer(state, action) {
@@ -43,6 +44,8 @@ export function reducer(state, action) {
       return ({ ...state, counter: action.value });
     case TYPES.SET_LAST_WORD:
       return ({ ...state, lastWord: action.value });
+    case TYPES.SET_USERNAME:
+      return ({ ...state, username: action.value });
     default:
       return state;
   }

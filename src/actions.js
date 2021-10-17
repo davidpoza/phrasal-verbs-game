@@ -30,3 +30,7 @@ export function setCounterAction(dispatch, value) {
 export function setLastWordAction(dispatch, value) {
   dispatch({ type: TYPES.SET_LAST_WORD, value });
 }
+
+export function setUsernameAction(dispatch, value) {
+  dispatch({ type: TYPES.SET_USERNAME, value});
+}

@@ -1,5 +1,6 @@
 import { useEffect, useCallback, useReducer }from 'react';
 import { initialState, reducer }  from 'reducer';
+import { usePrompt } from 'hooks';
 import {
   createBoardAction,
   showCardAction,
@@ -7,7 +8,8 @@ import {
   removeCardAction,
   changeBoardAction,
   setCounterAction,
-  setLastWordAction
+  setLastWordAction,
+  setUsernameAction,
 } from 'actions';
 import { sleep, getExposedCards } from 'utils';
 
@@ -17,8 +19,11 @@ const successAudio = new Audio(`${process.env.PUBLIC_URL}/audios/success.wav`);
 
 export function useBoard() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const username = usePrompt();
+
   useEffect(() => {
     createBoardAction(dispatch);
+    setUsernameAction(dispatch, username);
   }, []);
 
   const handleOnClick = useCallback((index) => {
