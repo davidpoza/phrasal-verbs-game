@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useReducer }from 'react';
+import { useEffect, useCallback, useReducer }from 'react';
 import { initialState, reducer }  from 'reducer';
-import { createBoardAction, showCardAction, hideAllAction, removeCardAction } from 'actions';
+import { createBoardAction, showCardAction, hideAllAction, removeCardAction, changeBoardAction } from 'actions';
 import { sleep, getExposedCards } from 'utils';
 
 
@@ -8,7 +8,6 @@ const cardFlipAudio = new Audio(`${process.env.PUBLIC_URL}/audios/card-flip.wav`
 const successAudio = new Audio(`${process.env.PUBLIC_URL}/audios/success.wav`);
 
 export function useBoard() {
-
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     createBoardAction(dispatch);
@@ -22,6 +21,10 @@ export function useBoard() {
       }
       showCardAction(dispatch, state, index);
     }
+  }, [state]);
+
+  const handleChangeBoard = useCallback((event) => {
+    changeBoardAction(dispatch, event.target.value);
   }, [state]);
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export function useBoard() {
 
   return {
     state,
-    handleOnClick
+    handleOnClick,
+    handleChangeBoard
   };
 }

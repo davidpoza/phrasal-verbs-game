@@ -1,5 +1,5 @@
 import * as TYPES from 'actionsTypes';
-import { getExposedCards } from 'utils';
+
 
 export function createBoardAction(dispatch) {
   dispatch({ type: TYPES.FILL_BOARD });
@@ -17,4 +17,8 @@ export function showCardAction(dispatch, state, index) {
   if (state.numExposedCards < 2) {
     dispatch({ type: TYPES.SHOW_CARD, index });
   }
+}
+
+export function changeBoardAction(dispatch, board) {
+  dispatch({ type: TYPES.CHANGE_BOARD, board });
 }
