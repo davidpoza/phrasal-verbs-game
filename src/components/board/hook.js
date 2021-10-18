@@ -10,6 +10,7 @@ import {
   setCounterAction,
   setLastWordAction,
   setUsernameAction,
+  toggleScoreBoardAction,
 } from 'actions';
 import { sleep, getExposedCards } from 'utils';
 
@@ -41,6 +42,10 @@ export function useBoard() {
     changeBoardAction(dispatch, event.target.value);
     setCounterAction(dispatch, 0);
   }, [state]);
+
+  const handleToggleScoreBoard = useCallback(() => {
+    toggleScoreBoardAction(dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -75,6 +80,7 @@ export function useBoard() {
   return {
     state,
     handleOnClick,
-    handleChangeBoard
+    handleChangeBoard,
+    handleToggleScoreBoard
   };
 }

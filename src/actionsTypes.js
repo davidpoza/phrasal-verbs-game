@@ -6,3 +6,4 @@ export const CHANGE_BOARD = 'CHANGE_BOARD';
 export const SET_COUNTER = 'SET_COUNTER';
 export const SET_LAST_WORD = 'SET_LAST_WORD';
 export const SET_USERNAME = 'SET_USERNAME';
+export const TOGGLE_SCORE_BOARD = 'TOGGLE_SCORE_BOARD';

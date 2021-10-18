@@ -1,0 +1,15 @@
+.root {
+  width: 40px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .root {
+
+    padding: 20px;
+  }
+}

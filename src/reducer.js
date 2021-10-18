@@ -13,7 +13,8 @@ export const initialState = {
   selectedBoard: initialBoard,
   counter: 0,
   lastWord: '',
-  username: 'anonymous'
+  username: 'anonymous',
+  showScoreBoard: false,
 };
 
 export function reducer(state, action) {
@@ -46,6 +47,8 @@ export function reducer(state, action) {
       return ({ ...state, lastWord: action.value });
     case TYPES.SET_USERNAME:
       return ({ ...state, username: action.value });
+    case TYPES.TOGGLE_SCORE_BOARD:
+      return ({ ...state, showScoreBoard: !state.showScoreBoard });
     default:
       return state;
   }

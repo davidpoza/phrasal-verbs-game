@@ -34,3 +34,7 @@ export function setLastWordAction(dispatch, value) {
 export function setUsernameAction(dispatch, value) {
   dispatch({ type: TYPES.SET_USERNAME, value});
 }
+
+export function toggleScoreBoardAction(dispatch) {
+  dispatch({ type: TYPES.TOGGLE_SCORE_BOARD });
+}

@@ -51,3 +51,4 @@ export const BOARDS_LIST = {
 };
 
 export const APP_ID = 'phasalverbsmemorygame';
+export const API_URL = 'https://records.davidinformatico.com';

@@ -3,15 +3,18 @@ import Cell from 'components/cell';
 import Selector from 'components/selector/index.jsx';
 import Counter from 'components/counter/index.jsx';
 import Example from 'components/example/index.jsx';
+import ScoreBoard from 'components/scoreBoard';
 import { CARD_STATE, EXAMPLE_SENTENCES } from 'consts';
 import * as styles from './styles.module.css';
 import { useBoard } from './hook';
+import ScoreButton from 'components/scoreButton';
 
 export default function Board() {
-  const { state, handleOnClick, handleChangeBoard } = useBoard();
+  const { state, handleOnClick, handleChangeBoard, handleToggleScoreBoard } = useBoard();
 
   return (
     <div>
+      { state.showScoreBoard && <ScoreBoard handleToggleScoreBoard={handleToggleScoreBoard} /> }
       <Selector handleChangeBoard={handleChangeBoard} />
       <div className={styles.root}>
         {
@@ -32,6 +35,7 @@ export default function Board() {
       </div>
       <Example sentence={EXAMPLE_SENTENCES[state?.lastWord]} />
       <Counter counter={state.counter} />
+      <ScoreButton handleToggleScoreBoard={handleToggleScoreBoard} />
     </div>
   );
 }
