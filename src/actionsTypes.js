@@ -8,3 +8,4 @@ export const SET_LAST_WORD = 'SET_LAST_WORD';
 export const SET_USERNAME = 'SET_USERNAME';
 export const TOGGLE_SCORE_BOARD = 'TOGGLE_SCORE_BOARD';
 export const SET_END_GAME = 'SET_END_GAME';
+export const SET_NUM_EXPOSED_CARDS = 'SET_NUM_EXPOSED_CARDS';

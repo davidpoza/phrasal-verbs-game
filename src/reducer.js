@@ -24,7 +24,7 @@ export function reducer(state, action) {
   let newWords = [];
   switch(action.type) {
     case TYPES.START_GAME:
-      return ({ ...state, board: createBoard(state.words), gameId: randomString(), endGame: false  });
+      return ({ ...state, board: createBoard(state.words), gameId: randomString(), endGame: false, lastWord: '', counter: 0, numExposedCards: 0  });
     case TYPES.HIDE_ALL_CARDS:
       return ({ ...state, numExposedCards: 0, board: state?.board?.map((c) => ({ ...c, hidden: true })) });
     case TYPES.SHOW_CARD:
@@ -36,6 +36,7 @@ export function reducer(state, action) {
       return ({ ...state, board: newBoard, numExposedCards: state.numExposedCards + inc });
     case TYPES.REMOVE_CARD:
       newBoard[action.index].word = '';
+      newBoard[action.index].hidden = true;
       return ({ ...state, board: newBoard });
     case TYPES.CHANGE_BOARD:
       newWords = {
@@ -53,6 +54,8 @@ export function reducer(state, action) {
       return ({ ...state, showScoreBoard: !state.showScoreBoard });
     case TYPES.SET_END_GAME:
       return ({ ...state, endGame: true });
+    case TYPES.SET_NUM_EXPOSED_CARDS:
+      return ({ ...state, numExposedCards: action.value });
     default:
       return state;
   }

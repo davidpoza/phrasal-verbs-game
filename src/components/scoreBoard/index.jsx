@@ -10,8 +10,8 @@ export default function ScoreBoard({ handleToggleScoreBoard }) {
       { scores.length === 0 && <div>loading...</div>}
       <ul className={styles.list}>
         {
-          scores?.map((score) => {
-            return <li className={styles.item}>
+          scores?.map((score, i) => {
+            return <li key={i} className={styles.item}>
               <div>{score.user}</div>
               <strong>{score.score} seg.</strong>
             </li>

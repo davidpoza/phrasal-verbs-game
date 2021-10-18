@@ -12,6 +12,7 @@ import {
   setUsernameAction,
   toggleScoreBoardAction,
   setEndGameAction,
+  setNumExposedCardsAction,
 } from 'actions';
 import { sleep, getExposedCards, isEndGame } from 'utils.js';
 import { createSession } from 'api/sessions.js';
@@ -75,6 +76,7 @@ export function useBoard() {
   // check is a cards pair are a success. if so we removen them from board
   useEffect(() => {
     if (state?.numExposedCards === 2) {
+      setNumExposedCardsAction(dispatch, 0);
       if (state?.lastWord) setLastWordAction(dispatch, '');
       const exposedCards = getExposedCards(state.board);
       const indexCardA = state?.board.indexOf(exposedCards[0]);

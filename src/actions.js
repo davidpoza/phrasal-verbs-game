@@ -42,3 +42,7 @@ export function toggleScoreBoardAction(dispatch) {
 export function setEndGameAction(dispatch) {
   dispatch({ type: TYPES.SET_END_GAME });
 }
+
+export function setNumExposedCardsAction(dispatch, value) {
+  dispatch({ type: TYPES.SET_NUM_EXPOSED_CARDS, value });
+}
