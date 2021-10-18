@@ -32,6 +32,10 @@ export function getExposedCards(board) {
   return board?.filter((c) => !c.hidden);
 }
 
+export function isEndGame(board) {
+  return board?.filter((c) => c.word !== '').length === 0;
+}
+
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -40,4 +44,8 @@ export function formatSeconds(seconds) {
   const date = new Date(null);
   date.setSeconds(seconds);
   return date.toISOString().substr(11, 8);
+}
+
+export function randomString() {
+ return (Math.random() + 1).toString(36).substring(7);
 }

@@ -11,8 +11,11 @@ import {
   setLastWordAction,
   setUsernameAction,
   toggleScoreBoardAction,
+  setEndGameAction,
 } from 'actions';
-import { sleep, getExposedCards } from 'utils';
+import { sleep, getExposedCards, isEndGame } from 'utils.js';
+import { createSession } from 'api/sessions.js';
+import { createScore } from 'api/scores.js';
 
 
 const cardFlipAudio = new Audio(`${process.env.PUBLIC_URL}/audios/card-flip.wav`);
@@ -25,7 +28,7 @@ export function useBoard() {
   useEffect(() => {
     createBoardAction(dispatch);
     setUsernameAction(dispatch, username);
-  }, []);
+  }, [username]);
 
   const handleOnClick = useCallback((index) => {
     if (state?.board[index]?.word) {
@@ -41,7 +44,7 @@ export function useBoard() {
   const handleChangeBoard = useCallback((event) => {
     changeBoardAction(dispatch, event.target.value);
     setCounterAction(dispatch, 0);
-  }, [state]);
+  }, [dispatch]);
 
   const handleToggleScoreBoard = useCallback(() => {
     toggleScoreBoardAction(dispatch);
@@ -54,6 +57,22 @@ export function useBoard() {
     return () => clearTimeout(timer);
   }, [state.counter])
 
+
+  // create a new game session
+  useEffect(() => {
+    if (state.username && state.gameId) {
+      console.log('starting session....');
+      (async () => {
+        try {
+          await createSession(state.username, state.gameId);
+        } catch(error) {
+          console.log('error during session creation', error);
+        }
+      })();
+    }
+  }, [state.gameId, state.username]);
+
+  // check is a cards pair are a success. if so we removen them from board
   useEffect(() => {
     if (state?.numExposedCards === 2) {
       if (state?.lastWord) setLastWordAction(dispatch, '');
@@ -77,6 +96,29 @@ export function useBoard() {
     }
   }, [state]);
 
+  // check if board is completed to set endGame flag
+  useEffect(() => {
+    if (isEndGame(state.board) && state.counter !== 0 && !state.endGame) {
+      console.log("FIN DE JUEGO")
+      setEndGameAction(dispatch);
+    }
+  }, [state.board, state.counter])
+
+  // creates a new game when current one ends
+  useEffect(() => {
+    if(state.endGame) {
+      createBoardAction(dispatch);
+      (async () => {
+        try {
+          await createSession(state.username, state.gameId);
+        } catch(error) {
+          console.log('error during session creation', error);
+        }
+      })()
+    }
+  }, [state.endGame, state.username, state.gameId])
+
+console.log(state)
   return {
     state,
     handleOnClick,

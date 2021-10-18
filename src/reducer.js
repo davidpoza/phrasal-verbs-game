@@ -1,6 +1,6 @@
 import * as TYPES from 'actionsTypes';
 import { PHRASAL_VERBS } from 'consts';
-import { createBoard, transposeObject } from 'utils';
+import { createBoard, transposeObject, randomString } from 'utils';
 
 const initialBoard = 'education';
 export const initialState = {
@@ -15,14 +15,16 @@ export const initialState = {
   lastWord: '',
   username: 'anonymous',
   showScoreBoard: false,
+  gameId: '',
+  endGame: false,
 };
 
 export function reducer(state, action) {
   const newBoard = [ ...state.board ];
   let newWords = [];
   switch(action.type) {
-    case TYPES.FILL_BOARD:
-      return ({ ...state, board: createBoard(state.words) });
+    case TYPES.START_GAME:
+      return ({ ...state, board: createBoard(state.words), gameId: randomString(), endGame: false  });
     case TYPES.HIDE_ALL_CARDS:
       return ({ ...state, numExposedCards: 0, board: state?.board?.map((c) => ({ ...c, hidden: true })) });
     case TYPES.SHOW_CARD:
@@ -49,6 +51,8 @@ export function reducer(state, action) {
       return ({ ...state, username: action.value });
     case TYPES.TOGGLE_SCORE_BOARD:
       return ({ ...state, showScoreBoard: !state.showScoreBoard });
+    case TYPES.SET_END_GAME:
+      return ({ ...state, endGame: true });
     default:
       return state;
   }

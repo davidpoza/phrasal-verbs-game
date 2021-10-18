@@ -2,7 +2,7 @@ import * as TYPES from 'actionsTypes';
 
 
 export function createBoardAction(dispatch) {
-  dispatch({ type: TYPES.FILL_BOARD });
+  dispatch({ type: TYPES.START_GAME });
 }
 
 export function removeCardAction(dispatch, index) {
@@ -37,4 +37,8 @@ export function setUsernameAction(dispatch, value) {
 
 export function toggleScoreBoardAction(dispatch) {
   dispatch({ type: TYPES.TOGGLE_SCORE_BOARD });
+}
+
+export function setEndGameAction(dispatch) {
+  dispatch({ type: TYPES.SET_END_GAME });
 }
