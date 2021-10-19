@@ -14,7 +14,7 @@ import {
   setEndGameAction,
   setNumExposedCardsAction,
 } from 'actions';
-import { sleep, getExposedCards, isEndGame } from 'utils.js';
+import { sleep, getExposedCards, isEndGame, randomString } from 'utils.js';
 import { createSession } from 'api/sessions.js';
 import { createScore } from 'api/scores.js';
 
@@ -27,7 +27,7 @@ export function useBoard() {
   const username = usePrompt();
 
   useEffect(() => {
-    createBoardAction(dispatch);
+    createBoardAction(dispatch, randomString());
     setUsernameAction(dispatch, username);
   }, [username]);
 
@@ -109,11 +109,13 @@ export function useBoard() {
   // creates a new game when current one ends
   useEffect(() => {
     if(state.endGame) {
-      createBoardAction(dispatch);
+      const newGameId = randomString();
+      createBoardAction(dispatch, newGameId);
       (async () => {
         try {
           await createScore(state.username, state.gameId);
-          await createSession(state.username, state.gameId);
+          await sleep(3000);
+          await createSession(state.username, newGameId);
         } catch(error) {
           console.log('error during session creation', error);
         }

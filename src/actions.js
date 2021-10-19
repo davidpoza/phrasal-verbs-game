@@ -1,8 +1,8 @@
 import * as TYPES from 'actionsTypes';
 
 
-export function createBoardAction(dispatch) {
-  dispatch({ type: TYPES.START_GAME });
+export function createBoardAction(dispatch, gameId) {
+  dispatch({ type: TYPES.START_GAME, gameId });
 }
 
 export function removeCardAction(dispatch, index) {

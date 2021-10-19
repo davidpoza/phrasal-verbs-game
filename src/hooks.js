@@ -9,9 +9,12 @@ export function usePrompt() {
     if (!prevLStorage.username) {
       readValue = window.prompt('Please enter your name');
     }
+
     if (readValue) {
       setUsername(readValue);
       localStorage.setItem(APP_ID, JSON.stringify({ username: readValue }));
+    } else {
+      setUsername(prevLStorage.username);
     }
   }, []);
 
