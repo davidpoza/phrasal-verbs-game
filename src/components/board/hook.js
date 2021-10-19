@@ -113,8 +113,8 @@ export function useBoard() {
       createBoardAction(dispatch, newGameId);
       (async () => {
         try {
-          await createScore(state.username, state.gameId);
-          await sleep(3000);
+          createScore(state.username, state.gameId);
+          // await sleep(4000);
           await createSession(state.username, newGameId);
         } catch(error) {
           console.log('error during session creation', error);
