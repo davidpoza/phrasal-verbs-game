@@ -15,7 +15,7 @@ import {
   setNumExposedCardsAction,
 } from 'actions';
 import { sleep, getExposedCards, isEndGame, randomString } from 'utils.js';
-import { createSession } from 'api/sessions.js';
+import { createSession, getSession } from 'api/sessions.js';
 import { createScore } from 'api/scores.js';
 
 
@@ -51,6 +51,8 @@ export function useBoard() {
     toggleScoreBoardAction(dispatch);
   }, [dispatch]);
 
+
+  // counter
   useEffect(() => {
     const timer = setTimeout(() => {
       setCounterAction(dispatch, state.counter + 1);
@@ -58,6 +60,22 @@ export function useBoard() {
     return () => clearTimeout(timer);
   }, [state.counter])
 
+  // anticheat
+  useEffect(() => {
+    if (state.counter > 0 && state.username && state.gameId && state.counter % 10 === 0) { // each 10 seconds
+      try {
+        (async () => {
+          const { gameId } = await getSession(state.username);
+          if (gameId !== state.gameId) {
+            console.log('⚠ anticheat system has been triggered!. There are too many concurrent sessions, it must be only one.');
+            setEndGameAction(dispatch);
+          }
+        })();
+      } catch(error) {
+        console.log(error);
+      }
+    }
+  }, [state.counter, state.gameId, state.username])
 
   // create a new game session
   useEffect(() => {
@@ -73,7 +91,7 @@ export function useBoard() {
     }
   }, [state.gameId, state.username]);
 
-  // check is a cards pair are a success. if so we removen them from board
+  // check if a cards pair are a success. if so we removen them from board
   useEffect(() => {
     if (state?.numExposedCards === 2) {
       setNumExposedCardsAction(dispatch, 0);

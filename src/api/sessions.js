@@ -1,7 +1,8 @@
 import { API_URL, APP_ID } from 'consts.js';
 
-export function getSession() {
-
+export async function getSession(username) {
+  const res = await fetch(`${API_URL}/sessions?appId=${APP_ID}&username=${username}`);
+  return await res.json();
 }
 
 export async function createSession(username, gameId) {
