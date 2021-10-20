@@ -14,7 +14,7 @@ export default function Board() {
 
   return (
     <div>
-      { state.showScoreBoard && <ScoreBoard handleToggleScoreBoard={handleToggleScoreBoard} /> }
+      { state.showScoreBoard && <ScoreBoard handleToggleScoreBoard={handleToggleScoreBoard} selectedBoard={state.selectedBoard} /> }
       <Selector handleChangeBoard={handleChangeBoard} />
       <div className={styles.root}>
         {

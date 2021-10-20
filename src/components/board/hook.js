@@ -122,7 +122,7 @@ export function useBoard() {
       console.log("FIN DE JUEGO")
       setEndGameAction(dispatch);
     }
-  }, [state.board, state.counter])
+  }, [state.board, state.counter, state.endGame])
 
   // creates a new game when current one ends
   useEffect(() => {
@@ -131,15 +131,16 @@ export function useBoard() {
       createBoardAction(dispatch, newGameId);
       (async () => {
         try {
-          createScore(state.username, state.gameId);
-          // await sleep(4000);
+          createScore(state.username, state.gameId, {
+            board: state.selectedBoad,
+          });
           await createSession(state.username, newGameId);
         } catch(error) {
           console.log('error during session creation', error);
         }
       })()
     }
-  }, [state.endGame, state.username, state.gameId])
+  }, [state.endGame, state.username, state.gameId, state.selectedBoad])
 
 console.log(state)
   return {

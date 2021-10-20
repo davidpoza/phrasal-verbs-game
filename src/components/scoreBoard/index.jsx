@@ -2,11 +2,11 @@ import React from 'react';
 import useScoreBoard from './hook';
 import * as styles from './styles.module.css';
 
-export default function ScoreBoard({ handleToggleScoreBoard }) {
-  const { scores } = useScoreBoard();
+export default function ScoreBoard({ handleToggleScoreBoard, selectedBoard }) {
+  const { scores } = useScoreBoard(selectedBoard);
   return <div className={styles.root}>
     <div className={styles.content}>
-      <h2>Ranking</h2>
+      <h2>Ranking for "{selectedBoard}" level</h2>
       { scores.length === 0 && <div>loading...</div>}
       <ul className={styles.list}>
         {
