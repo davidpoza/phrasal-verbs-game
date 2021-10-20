@@ -8,7 +8,7 @@ export default function useScoreBoard(selectedBoard) {
     (async () => {
       setScores(await getScores(selectedBoard));
     })();
-  }, [])
+  }, [selectedBoard])
 
   return {
     scores,

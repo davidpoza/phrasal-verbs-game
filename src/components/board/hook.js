@@ -132,7 +132,7 @@ export function useBoard() {
       (async () => {
         try {
           createScore(state.username, state.gameId, {
-            board: state.selectedBoad,
+            level: state.selectedBoard,
           });
           await createSession(state.username, newGameId);
         } catch(error) {
