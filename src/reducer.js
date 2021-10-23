@@ -1,8 +1,8 @@
 import * as TYPES from 'actionsTypes';
-import { PHRASAL_VERBS } from 'consts';
+import { PHRASAL_VERBS, INITIAL_BOARD } from 'consts';
 import { createBoard, transposeObject } from 'utils';
 
-const initialBoard = 'education';
+const initialBoard = INITIAL_BOARD;
 export const initialState = {
   words: {
     ...PHRASAL_VERBS[initialBoard],

@@ -16,7 +16,12 @@ export default function Cell({ index, word, state = CARD_STATE.FACE_DOWN, handle
     className = styles.solved;
   }
   return <div className={className} onClick={() => {handleOnClick(index); }}>
-    <div className={styles.text}>{state === CARD_STATE.FACE_UP && word}</div>
+    <div className={styles.text} title={state === CARD_STATE.FACE_UP ? word : ''}>
+      {
+        state === CARD_STATE.FACE_UP
+          && `${word.slice(0,25)}${word.length > 25 ? '...' : ''}`
+      }
+    </div>
   </div>
 }
 
